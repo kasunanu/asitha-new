@@ -1,0 +1,229 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1920px) {
+
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1536px) {
+
+  .services_div{
+    min-height: 55vh;
+  }
+
+  .animate_text h2 {
+    font-size: 60px;
+  }
+
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1280px) {
+  
+
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1199px) {
+    
+  
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1024px) {
+  
+	
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px) {
+  .tracks_main_title {
+    font-size: 36px;
+  }
+  .tracks_showcase_card {
+    height: 440px;
+    min-height: 400px;
+    margin-bottom: 20px;
+  }
+  .track_item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 14px;
+  }
+  .track_actions {
+    margin-left: 0;
+    width: 100%;
+  }
+  .track_links {
+    width: 100%;
+  }
+
+  .services_showcase_grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .services_menu_col {
+    grid-column: span 2;
+  }
+  .services_nav_list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+  .testimonial_title {
+    font-size: 48px;
+  }
+  .testimonial_card {
+    padding: 30px 24px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 768px) {
+
+	
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 767px) {
+  .played_tracks_section {
+    padding: 60px 0 100px;
+  }
+  .tracks_main_title {
+    font-size: 28px;
+  }
+  .tracks_showcase_card {
+    height: 340px;
+    min-height: 300px;
+  }
+  .poster_title {
+    font-size: 22px;
+  }
+  .poster_desc {
+    font-size: 12.5px;
+  }
+  .track_left {
+    gap: 14px;
+  }
+  .track_name {
+    font-size: 20px;
+  }
+  .track_number {
+    font-size: 13px;
+  }
+
+  .services_showcase_grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .services_menu_col {
+    grid-column: span 1;
+    padding-bottom: 0;
+  }
+  .services_nav_list {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .showcase_card {
+    border-radius: 20px;
+  }
+  .narrative_description {
+    font-size: 14.5px;
+  }
+  .testimonial_title {
+    font-size: 34px;
+  }
+  .testimonial_quote {
+    font-size: 16.5px;
+  }
+  .testimonial_card {
+    padding: 26px 20px;
+  }
+
+  /* Contact & Footer Responsive */
+  .contact_form_wrapper {
+    padding: 70px 0 60px;
+  }
+  .contact_headline {
+    font-size: 34px;
+  }
+  .contact_subheading {
+    font-size: 15px;
+  }
+  .pill_tag_label {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .bottom_footer_block {
+    padding: 60px 0 35px;
+  }
+  .footer_social_pills_row {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 45px;
+  }
+  .footer_social_pill {
+    width: 100%;
+  }
+  .footer_links_newsletter_row {
+    padding-bottom: 35px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 575px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	
+
+}
+
+@media only screen and (max-width : 460px) {
+	
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 375px) {
+	
+
+	
+}
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 360px) {
+
+
+}
+
+
+@media only screen and (max-width : 320px) {
+
+
+
+}
+
+@media only screen and (min-width: 992px) {
+  .tracks_showcase_card {
+    position: sticky;
+    top: 120px;
+  }
+}
+
+@media (min-width: 992px) {
+ 
+  }
