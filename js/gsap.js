@@ -56,6 +56,75 @@ document.addEventListener("DOMContentLoaded", () => {
     preventDefault: true,
   });
 
+  // --- FIXED SOCIAL LINKS BACKGROUND COLOR ADAPTATION ---
+  const fixedSocials = document.getElementById("siteFixedSocials");
+  if (fixedSocials) {
+    const handleSocialsColor = (scrollPos) => {
+      // When at or near the top of the hero, remove all background and color overrides
+      if (scrollPos <= 60) {
+        fixedSocials.classList.remove("scrolled-dark", "scrolled-light");
+        return;
+      }
+
+      // Check element or brightness underneath fixed socials
+      const rect = fixedSocials.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      fixedSocials.style.pointerEvents = "none";
+      const elemBelow = document.elementFromPoint(x, y);
+      fixedSocials.style.pointerEvents = "auto";
+
+      let isLight = false;
+      if (elemBelow) {
+        let curr = elemBelow;
+        while (curr && curr !== document.body) {
+          const bg = window.getComputedStyle(curr).backgroundColor;
+          if (bg && bg !== "transparent" && bg !== "rgba(0, 0, 0, 0)") {
+            const rgb = bg.match(/\d+/g);
+            if (rgb && rgb.length >= 3) {
+              const r = parseInt(rgb[0], 10);
+              const g = parseInt(rgb[1], 10);
+              const b = parseInt(rgb[2], 10);
+              const a = rgb.length >= 4 ? parseFloat(rgb[3]) : 1;
+              if (a > 0.3) {
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                isLight = brightness > 150;
+                break;
+              }
+            }
+          }
+          curr = curr.parentElement;
+        }
+      }
+
+      if (isLight) {
+        fixedSocials.classList.remove("scrolled-dark");
+        fixedSocials.classList.add("scrolled-light");
+      } else {
+        fixedSocials.classList.add("scrolled-dark");
+        fixedSocials.classList.remove("scrolled-light");
+      }
+    };
+
+    // 1. ScrollTrigger onUpdate: perfectly synced with ScrollSmoother on every frame
+    ScrollTrigger.create({
+      start: "top top",
+      end: "max",
+      onUpdate: (self) => {
+        handleSocialsColor(self.scroll());
+      }
+    });
+
+    // 2. Window scroll event listener as fallback
+    window.addEventListener("scroll", () => {
+      const scrollPos = window.scrollY || document.documentElement.scrollTop || (smoother ? smoother.scrollTop() : 0);
+      handleSocialsColor(scrollPos);
+    }, { passive: true });
+
+    // Initial check on load
+    handleSocialsColor(0);
+  }
   /* ðŸ”¹ Hero image zoom + fade */
   if (document.querySelector(".hero_section") && document.querySelector(".hero-bg")) {
     ScrollTrigger.create({
@@ -360,22 +429,21 @@ cursorInvertElements.forEach(el => {
 
     // Extract text content from button (ignoring SVG icon)
     let text = "";
+    const nodesToRemove = [];
     btn.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
         text += node.textContent;
+        nodesToRemove.push(node);
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== "svg" && !node.classList.contains("button__icon-svg") && !node.classList.contains("arrow_icon")) {
+        text += node.textContent;
+        nodesToRemove.push(node);
       }
     });
     text = text.trim();
     if (!text) return;
 
-    // Remove existing text nodes from button
-    const textNodes = [];
-    btn.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        textNodes.push(node);
-      }
-    });
-    textNodes.forEach((node) => node.remove());
+    // Remove existing text/span nodes from button
+    nodesToRemove.forEach((node) => node.remove());
 
     // Helper to wrap characters into animated spans
     const buildCharSpans = (str) => {
@@ -500,7 +568,10 @@ cursorInvertElements.forEach(el => {
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
-      navigation: false,
+      navigation: {
+        nextEl: ".testimonial_next_btn",
+        prevEl: ".testimonial_prev_btn",
+      },
       pagination: false,
 
       breakpoints: {
@@ -531,9 +602,9 @@ cursorInvertElements.forEach(el => {
   const videoModalClose = document.getElementById("videoModalClose");
   const videoModalBackdrop = document.getElementById("videoModalBackdrop");
 
-  const openVideoModal = () => {
-    if (!videoCard || !videoModal || !videoModalIframe) return;
-    const videoId = videoCard.getAttribute("data-video-id") || "rK6t5K0wOnQ";
+  const openVideoModal = (customId) => {
+    if (!videoModal || !videoModalIframe) return;
+    const videoId = typeof customId === "string" ? customId : ((videoCard ? videoCard.getAttribute("data-video-id") : "rK6t5K0wOnQ") || "rK6t5K0wOnQ");
     videoModalIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
     videoModal.classList.add("active");
     videoModal.setAttribute("aria-hidden", "false");
@@ -549,7 +620,7 @@ cursorInvertElements.forEach(el => {
   };
 
   if (videoCard) {
-    videoCard.addEventListener("click", openVideoModal);
+    videoCard.addEventListener("click", () => openVideoModal());
     videoCard.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -564,6 +635,43 @@ cursorInvertElements.forEach(el => {
 
   if (videoModalBackdrop) {
     videoModalBackdrop.addEventListener("click", closeVideoModal);
+  }
+
+  // News Video Openers
+  document.querySelectorAll(".open_news_video").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const vid = btn.getAttribute("data-video-id") || "f_798K4L8cE";
+      openVideoModal(vid);
+    });
+  });
+
+  // Global ESC Key Listener for Modals
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeVideoModal();
+    }
+  });
+
+  // --- News Stacking Cards (Pin with Top Gap - 80vh Height, No Fade) ---
+  const newsCards = gsap.utils.toArray(".news_stack_card");
+  const newsContainer = document.querySelector(".news_stacking_container");
+
+  if (newsCards.length > 0 && newsContainer) {
+    const getTopGap = () => (window.innerWidth <= 768 ? 40 : 70);
+
+    newsCards.forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: () => `top ${getTopGap()}px`,
+        endTrigger: newsContainer,
+        end: () => `bottom top+=${card.offsetHeight + getTopGap()}`,
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      });
+    });
   }
 
   // --- Ambient Red Gradient Glows: Smooth Scroll Parallax (With Scroll) ---
