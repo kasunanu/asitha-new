@@ -85,6 +85,24 @@
       </div>
   </div>
 
+  <!-- Fixed Social Links (Stays fixed to screen, does not scroll with page) -->
+  <div class="fixed_social_wrapper" id="fixedSocialWrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-5"></div>
+        <div class="col-7 d-flex align-items-center pt-3">
+          <div class="social_links d-flex align-items-center justify-content-center cursor-scale" id="siteFixedSocials">
+            <p class="mb-0 text-light">Socials &nbsp; |</p>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="smooth-wrapper">
     <div id="smooth-content">
   
@@ -100,13 +118,8 @@
               <div class="col-5"></div>
               <div class="col-7 d-flex justify-content-between align-items-center pt-3">
   
-                <div class="social_links d-flex align-items-center justify-content-center">
-                  <p class="mb-0 text-light">Socials &nbsp; |</p>
-                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-tiktok"></i></i></a>
-                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+                <!-- In-flow placeholder to preserve header_nav & button alignment -->
+                <div class="social_links_placeholder" style="width: 175px; height: 20px; visibility: hidden;" aria-hidden="true"></div>
   
                 <nav class="navbar navbar-expand-lg navbar-dark header_nav cursor-scale">
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -122,16 +135,13 @@
                         <a class="nav-link" href="#">About Asitha &nbsp; |</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Tracks &nbsp; |</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Bookings &nbsp;</a>
+                        <a class="nav-link" href="#">Tracks</a>
                       </li>
                     </ul>
                   </div>
                 </nav>
   
-                <a href="#contact">
+                <a href="#contact" class="cursor-scale">
                   <button class="btn btn-underline">Book Performance</button>
                 </a>
               </div>
@@ -804,11 +814,21 @@
                 <span>Testimonials</span>
               </div>
             </div>
-            <div class="col-lg-7 col-md-6 mb-3 mb-md-0">
+            <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
               <h2 class="testimonial_title mb-2">Clients Testimonials</h2>
               <p class="tracks_subtitle mb-0">
                 Hear what music producers, event organizers, and directors say about collaborating with Asitha.
               </p>
+            </div>
+            <div class="col-lg-4 col-md-3 mb-3 mb-md-0 d-flex justify-content-md-end">
+              <div class="testimonial_nav_arrows d-flex align-items-center gap-3">
+                <button type="button" class="testimonial_nav_btn testimonial_prev_btn cursor-scale" aria-label="Previous Testimonial">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="testimonial_nav_btn testimonial_next_btn cursor-scale" aria-label="Next Testimonial">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -948,6 +968,161 @@
 
       <div class="clearfix"></div>
 
+      <!-- news and updates stacking card section -->
+      <section class="news_section" id="updates">
+        <div class="container-fluid px-lg-5 px-3">
+          <div class="tracks_header_row row align-items-end mb-5 justify-content-between">
+            <div class="col-lg-3 col-md-4 mb-3 mb-md-0">
+              <div class="tracks_eyebrow">
+                <span class="sparkle_icon">✦</span>
+                <span>News & Updates</span>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-5 mb-3 mb-md-0 clusterBurrowing">
+              <div class="animate_text paralax_eff mt-0">
+                <h2>Latest Happenings</h2>
+              <p class="tracks_subtitle mb-0">Upcoming live concerts, retrospective performance highlights, and newly premiered music releases.</p>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3 text-md-end d-flex align-items-center justify-content-md-end gap-3 flex-wrap">
+              <a href="updates.html">
+                <button class="btn btn-underline red_arrow_btn cursor-scale">All Updates 
+                  <svg class="ms-1 button__icon-svg" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="10">
+                    <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <!-- Stacking Cards Container -->
+          <div class="news_stacking_container">
+            
+            <!-- Card 1: Upcoming Live Concert -->
+            <article class="news_stack_card" style="--card-index: 0;" data-index="0">
+              <div class="row g-0 align-items-stretch h-100">
+                <div class="col-lg-5 col-12 news_card_img_col h-100">
+                  <div class="news_card_img_box h-100">
+                    <img src="images/opening.jpg" alt="Symphony of the Winds concert" class="news_card_img" loading="lazy">
+                    <div class="news_category_tag tag_upcoming">
+                      <span class="news_tag_dot"></span> Upcoming Concert
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-12 news_card_content_col h-100 d-flex flex-column justify-content-between">
+                  <div class="news_card_body my-auto">
+                    <div class="news_meta_row">
+                      <span class="news_meta_item"><i class="fa-regular fa-calendar-days"></i> 18 Dec 2026</span>
+                      <span class="news_meta_sep">•</span>
+                      <span class="news_meta_item"><i class="fa-solid fa-location-dot"></i> Nelum Pokuna, Colombo</span>
+                    </div>
+                    <h3 class="news_card_heading">Symphony of the Winds — Live with Philharmonic Orchestra</h3>
+                    <p class="news_card_description">
+                      Join Asitha live on stage alongside a 40-piece philharmonic ensemble for an enchanting evening traversing classical Hindustani ragas, vibrant oriental harmonies, and sweeping cinematic orchestrations.
+                    </p>
+                  </div>
+                  <div class="news_card_footer d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div class="news_badge_extra">
+                      <span class="badge_pill"><i class="fa-solid fa-ticket me-1"></i> Tickets Available</span>
+                    </div>
+                    <a href="#contact">
+                      <button type="button" class="btn btn-underline red_arrow_btn cursor-scale">Event Details 
+                        <svg class="ms-1 button__icon-svg" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="10">
+                          <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+                        </svg>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Newly Updated Video Release -->
+            <article class="news_stack_card" style="--card-index: 1;" data-index="1">
+              <div class="row g-0 align-items-stretch h-100">
+                <div class="col-lg-5 col-12 news_card_img_col h-100">
+                  <div class="news_card_img_box h-100">
+                    <img src="images/services_center.jpg" alt="Raag Desh Reimagined music video" class="news_card_img" loading="lazy">
+                    <div class="news_category_tag tag_video">
+                      <span class="news_tag_dot"></span> New Video Release
+                    </div>
+                    <button type="button" class="news_play_overlay_btn cursor-scale open_news_video" data-video-id="f_798K4L8cE" aria-label="Play video">
+                      <i class="fa-solid fa-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-12 news_card_content_col h-100 d-flex flex-column justify-content-between">
+                  <div class="news_card_body my-auto">
+                    <div class="news_meta_row">
+                      <span class="news_meta_item"><i class="fa-regular fa-calendar-days"></i> 08 Nov 2026</span>
+                      <span class="news_meta_sep">•</span>
+                      <span class="news_meta_item"><i class="fa-brands fa-youtube"></i> 4K Studio Session</span>
+                    </div>
+                    <h3 class="news_card_heading">Raag Desh Reimagined — Official Music Video & Studio Session</h3>
+                    <p class="news_card_description">
+                      A modern atmospheric interpretation of the timeless monsoon raga, blending custom-crafted bamboo bass flutes with ambient analogue synthesis and deep acoustic percussion, captured in high-fidelity 4K.
+                    </p>
+                  </div>
+                  <div class="news_card_footer d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div class="news_badge_extra">
+                      <span class="badge_pill"><i class="fa-solid fa-headphones me-1"></i> Dolby Atmos Master</span>
+                    </div>
+                    <button type="button" class="btn btn-underline red_arrow_btn cursor-scale open_news_video" data-video-id="f_798K4L8cE">Watch Video 
+                      <svg class="ms-1 button__icon-svg" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="10">
+                        <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Past Performance Recap -->
+            <article class="news_stack_card" style="--card-index: 2;" data-index="2">
+              <div class="row g-0 align-items-stretch h-100">
+                <div class="col-lg-5 col-12 news_card_img_col h-100">
+                  <div class="news_card_img_box h-100">
+                    <img src="images/corporate.jpg" alt="Twilight Reverie at Galle" class="news_card_img" loading="lazy">
+                    <div class="news_category_tag tag_past">
+                      <span class="news_tag_dot"></span> Past Performance
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-12 news_card_content_col h-100 d-flex flex-column justify-content-between">
+                  <div class="news_card_body my-auto">
+                    <div class="news_meta_row">
+                      <span class="news_meta_item"><i class="fa-regular fa-calendar-days"></i> 12 Oct 2026</span>
+                      <span class="news_meta_sep">•</span>
+                      <span class="news_meta_item"><i class="fa-solid fa-location-dot"></i> Galle Fort Heritage Stage</span>
+                    </div>
+                    <h3 class="news_card_heading">Twilight Reverie — Galle Literary & Music Festival 2026</h3>
+                    <p class="news_card_description">
+                      An intimate twilight acoustic performance inside the historic 17th-century ramparts of Galle Fort. Asitha enchanted international festival delegates with spontaneous improvisations against the rhythmic ocean breeze.
+                    </p>
+                  </div>
+                  <div class="news_card_footer d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div class="news_badge_extra">
+                      <span class="badge_pill"><i class="fa-solid fa-camera me-1"></i> Archived Gallery & Audio</span>
+                    </div>
+                    <a href="updates.html">
+                      <button type="button" class="btn btn-underline red_arrow_btn cursor-scale">Performance Recap 
+                        <svg class="ms-1 button__icon-svg" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="10">
+                          <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+                        </svg>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <div class="clearfix"></div>
+
       <!-- footer / contact section -->
 
       <section class="contact_footer_section" id="contact">
@@ -1076,6 +1251,25 @@
           <!-- Gradient Red Jelly Background Circle (Follows Cursor) -->
           <div class="footer_cursor_jelly" aria-hidden="true"></div>
           <div class="container">
+            <!-- Get In Touch (Email & Mobile) -->
+            <div class="footer_touch_block">
+              <div class="row g-4 align-items-end">
+                <div class="col-lg-7 col-md-6">
+                  <span class="footer_touch_label">GET IN TOUCH</span>
+                  <a href="mailto:asithaflute@gmail.com" class="footer_touch_val cursor-scale">
+                    asithaflute@gmail.com
+                  </a>
+                </div>
+                <div class="col-lg-5 col-md-6 text-md-end">
+                  <span class="footer_touch_label">CALL / WHATSAPP</span>
+                  <a href="tel:+94778298119" class="footer_touch_val cursor-scale">
+                    +94 77 82 98 119
+                  </a>
+                </div>
+              </div>
+              <div class="footer_touch_line"></div>
+            </div>
+
             
             <!-- Brand & Intro -->
             <div class="footer_brand_center text-center">
@@ -1118,7 +1312,7 @@
                   <div class="col-4">
                     <ul class="footer_nav_list">
                       <li><a href="#" class="cursor-scale">Tracks</a></li>
-                      <li><a href="#" class="cursor-scale">Albums</a></li>
+                      <li><a href="#updates" class="cursor-scale">News & Updates</a></li>
                       <li><a href="#" class="cursor-scale">Concerts</a></li>
                     </ul>
                   </div>
